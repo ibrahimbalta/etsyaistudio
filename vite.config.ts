@@ -13,6 +13,9 @@ export default defineConfig({
     tailwindcss(),
     tsconfigPaths(),
   ],
+  build: {
+    outDir: "dist",
+  },
   server: {
     host: "::",
     port: 8080,
