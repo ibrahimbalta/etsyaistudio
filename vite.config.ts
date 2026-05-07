@@ -31,21 +31,34 @@ export default defineConfig({
           console.log("Created .output/_worker.js");
         }
         
-        // Copy everything from .output/client to .output root for Pages assets
+        // Merge assets: Copy from server/assets and client/assets to .output/assets
+        const targetAssetsDir = path.join(outputDir, "assets");
+        if (!fs.existsSync(targetAssetsDir)) fs.mkdirSync(targetAssetsDir, { recursive: true });
+        
+        [path.join(serverDir, "assets"), path.join(clientDir, "assets")].forEach(dir => {
+          if (fs.existsSync(dir)) {
+            const files = fs.readdirSync(dir);
+            for (const file of files) {
+              fs.copyFileSync(path.join(dir, file), path.join(targetAssetsDir, file));
+            }
+          }
+        });
+        
+        // Copy other files from client root (like index.html, robots.txt etc)
         if (fs.existsSync(clientDir)) {
           const files = fs.readdirSync(clientDir);
           for (const file of files) {
+            if (file === "assets") continue;
             const src = path.join(clientDir, file);
             const dest = path.join(outputDir, file);
             if (fs.statSync(src).isDirectory()) {
-              // Note: simple recursive copy for folders
               fs.cpSync(src, dest, { recursive: true });
             } else {
               fs.copyFileSync(src, dest);
             }
           }
-          console.log("Moved assets to .output root");
         }
+        console.log("Assets merged and moved to .output root");
       }
     }
   ],
