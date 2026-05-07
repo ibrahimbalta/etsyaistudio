@@ -25,12 +25,33 @@ export default defineConfig({
         const outputDir = path.resolve(".output");
         const clientDir = path.resolve(".output/client");
         
-        // Ensure _worker.js and server.js exist in .output root
-        // assets/xxx.js files often have "../server.js" imports, so we need server.js in root
+        // Create a _worker.js wrapper to handle static assets and SSR
         if (fs.existsSync(path.join(serverDir, "server.js"))) {
-          fs.copyFileSync(path.join(serverDir, "server.js"), path.join(outputDir, "_worker.js"));
+          const workerContent = `
+import handler from './server.js';
+
+export default {
+  async fetch(request, env, ctx) {
+    const url = new URL(request.url);
+    
+    // Try to serve static assets first
+    if (url.pathname.startsWith('/assets/') || url.pathname.includes('.')) {
+      try {
+        const res = await env.ASSETS.fetch(request);
+        if (res.status !== 404) return res;
+      } catch (e) {
+        console.error('Static asset error:', e);
+      }
+    }
+    
+    // Fallback to TanStack Start handler
+    return handler.fetch(request, env, ctx);
+  }
+};
+`;
+          fs.writeFileSync(path.join(outputDir, "_worker.js"), workerContent);
           fs.copyFileSync(path.join(serverDir, "server.js"), path.join(outputDir, "server.js"));
-          console.log("Created .output/_worker.js and .output/server.js");
+          console.log("Created _worker.js wrapper and server.js");
         }
         
         // Merge assets: Copy from server/assets and client/assets to .output/assets
