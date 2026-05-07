@@ -27,7 +27,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             <span className="grid h-7 w-7 place-items-center rounded-md bg-gradient-to-br from-primary to-accent text-primary-foreground">
               <Sparkles className="h-4 w-4" />
             </span>
-            <span>EtsyAI Studio</span>
+            <span>Lumina Seller</span>
           </Link>
           <nav className="hidden gap-1 md:flex">
             {nav.map((n) => (

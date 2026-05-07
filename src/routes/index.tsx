@@ -11,8 +11,8 @@ export const Route = createFileRoute("/")({
   component: Landing,
   head: () => ({
     meta: [
-      { title: "EtsyAI Studio — Profesyonel Etsy & POD Otomasyonu" },
-      { name: "description", content: "Yapay zeka ile trendleri bulun, tasarım üretin ve Etsy mağazanızı tek bir merkezden yönetin." },
+      { title: "Lumina Seller — Profesyonel Satış & POD Otomasyonu" },
+      { name: "description", content: "Yapay zeka ile trendleri bulun, tasarım üretin ve mağazanızı tek bir merkezden yönetin. Global POD satıcıları için hepsi bir arada çözüm." },
     ],
   }),
 });
@@ -28,7 +28,7 @@ function Landing() {
               <Sparkles className="h-5 w-5" />
               <div className="absolute -inset-0.5 rounded-xl bg-primary/20 blur-sm -z-10" />
             </div>
-            <span>EtsyAI <span className="font-light text-primary">Studio</span></span>
+            <span>Lumina <span className="font-light text-primary">Seller</span></span>
           </div>
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
             <a href="#features" className="hover:text-primary transition-colors">Özellikler</a>
@@ -57,11 +57,11 @@ function Landing() {
           <div className="mx-auto max-w-7xl px-6">
             <div className="mx-auto max-w-4xl text-center">
               <Badge variant="secondary" className="mb-8 rounded-full px-5 py-2 text-sm font-medium border-primary/20 bg-primary/5 text-primary gap-2 inline-flex items-center">
-                <Star className="h-3.5 w-3.5 fill-primary" /> Etsy Satıcılarının 1 Numaralı AI Aracı
+                <Star className="h-3.5 w-3.5 fill-primary" /> Satıcıların 1 Numaralı AI Aracı
               </Badge>
 
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1]">
-                Etsy Mağazanızı{" "}
+                Mağazanızı{" "}
                 <span className="relative inline-block">
                   <span className="bg-gradient-to-r from-primary via-chart-1 to-primary bg-clip-text text-transparent">Yapay Zeka</span>
                   <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 300 12" fill="none"><path d="M2 8c40-6 100-8 148-4s108 6 148 2" stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="text-primary/30" /></svg>
@@ -101,7 +101,7 @@ function Landing() {
                   </div>
                   <div className="flex-1 text-center">
                     <div className="inline-flex items-center gap-1.5 rounded-md bg-muted/50 px-3 py-1 text-[10px] text-muted-foreground">
-                      <ShieldCheck className="h-3 w-3" /> app.etsyaistudio.com/dashboard
+                      <ShieldCheck className="h-3 w-3" /> app.luminaseller.com/dashboard
                     </div>
                   </div>
                 </div>
@@ -138,7 +138,7 @@ function Landing() {
 
             <div className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {[
-                { icon: TrendingUp, title: "Canlı Trend Analizi", desc: "Firecrawl destekli AI ile Etsy'deki en karlı nişleri anında keşfedin. 24 saatlik akıllı önbellek ile kredi tasarrufu.", color: "from-orange-500 to-red-500", bg: "bg-orange-500/10" },
+                { icon: TrendingUp, title: "Canlı Trend Analizi", desc: "Firecrawl destekli AI ile pazardaki en karlı nişleri anında keşfedin. 24 saatlik akıllı önbellek ile kredi tasarrufu.", color: "from-orange-500 to-red-500", bg: "bg-orange-500/10" },
                 { icon: Wand2, title: "AI Tasarım Üretimi", desc: "Pollinations AI (FLUX) ile sınırsız, özgün ve telifsiz tasarımlar üretin. Toplu üretim ve HD netleştirme dahil.", color: "from-purple-500 to-pink-500", bg: "bg-purple-500/10" },
                 { icon: Globe, title: "SEO & Listing Yazıcı", desc: "Gemini AI ile mükemmel başlık, 13 etiket, 4-6 paragraflık açıklama ve pazarlama içerikleri oluşturun.", color: "from-blue-500 to-cyan-500", bg: "bg-blue-500/10" },
                 { icon: Box, title: "Envanter Yönetimi", desc: "Dükkanınızdaki tüm ürünleri tek bir ekrandan izleyin. Stok takibi, fiyatlandırma ve görüntülenme istatistikleri.", color: "from-green-500 to-emerald-500", bg: "bg-green-500/10" },
@@ -170,7 +170,7 @@ function Landing() {
             </div>
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {[
-                { step: "01", title: "Trend Bulun", desc: "AI, Etsy'deki en yükselen nişleri sizin için analiz eder." },
+                { step: "01", title: "Trend Bulun", desc: "AI, pazardaki en yükselen nişleri sizin için analiz eder." },
                 { step: "02", title: "Tasarım Üretin", desc: "Tek tıkla özgün, baskıya hazır tasarımlar oluşturun." },
                 { step: "03", title: "Listing Yazın", desc: "SEO uyumlu başlık, etiket ve açıklamalar otomatik hazırlanır." },
                 { step: "04", title: "Satışa Başlayın", desc: "Dükkanınıza yükleyin, sosyal medyada paylaşın, kazanın." },
@@ -271,7 +271,7 @@ function Landing() {
             <div className="relative z-10">
               <Crown className="h-12 w-12 text-white/80 mx-auto mb-8" />
               <h2 className="text-3xl sm:text-5xl font-bold text-white leading-tight">
-                Etsy Serüveninize<br />Bugün Başlayın.
+                Satış Serüveninize<br />Bugün Başlayın.
               </h2>
               <p className="mt-6 text-lg text-white/70 max-w-xl mx-auto">
                 Kredi kartı gerekmez. 10 ücretsiz krediyle hemen deneyin.
@@ -293,9 +293,9 @@ function Landing() {
             <div className="grid h-7 w-7 place-items-center rounded-lg bg-primary text-primary-foreground">
               <Sparkles className="h-4 w-4" />
             </div>
-            EtsyAI Studio
+            Lumina Seller
           </div>
-          <p className="text-xs text-muted-foreground">© 2026 EtsyAI Studio. Tüm hakları saklıdır.</p>
+          <p className="text-xs text-muted-foreground">© 2026 Lumina Seller. Tüm hakları saklıdır.</p>
           <div className="flex gap-6 text-sm text-muted-foreground">
             <a href="#" className="hover:text-primary transition-colors">Şartlar</a>
             <a href="#" className="hover:text-primary transition-colors">Gizlilik</a>

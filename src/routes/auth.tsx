@@ -63,21 +63,21 @@ function AuthPage() {
         <div className="absolute inset-0 opacity-10" style={{backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.4\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")'}} />
         
         <div className="relative z-10 flex flex-col justify-between p-12 text-white">
-          <Link to="/" className="flex items-center gap-3">
+          <div className="flex items-center gap-3">
             <div className="grid h-10 w-10 place-items-center rounded-xl bg-white/20 backdrop-blur-sm">
               <Sparkles className="h-6 w-6" />
             </div>
-            <span className="text-2xl font-bold tracking-tight">EtsyAI Studio</span>
-          </Link>
+            <span className="text-2xl font-bold tracking-tight">Lumina Seller</span>
+          </div>
 
           <div className="space-y-8">
             <h2 className="text-4xl font-bold leading-tight">
-              Yapay Zeka ile<br />Etsy Satışlarınızı<br />
+              Yapay Zeka ile<br />Satışlarınızı<br />
               <span className="text-white/80">Otomatiğe Bağlayın.</span>
             </h2>
             <div className="space-y-4">
               {[
-                { icon: TrendingUp, text: "Canlı Etsy trend analizi" },
+                { icon: TrendingUp, text: "Canlı pazar trend analizi" },
                 { icon: Wand2, text: "Sınırsız AI tasarım üretimi" },
                 { icon: ShoppingCart, text: "Mağaza & sipariş yönetimi" },
               ].map((item, i) => (
@@ -91,7 +91,7 @@ function AuthPage() {
             </div>
           </div>
 
-          <p className="text-xs text-white/50">© 2026 EtsyAI Studio. Tüm hakları saklıdır.</p>
+          <p className="text-xs text-white/50">© 2026 Lumina Seller. Tüm hakları saklıdır.</p>
         </div>
       </div>
 
@@ -102,13 +102,13 @@ function AuthPage() {
             <div className="grid h-8 w-8 place-items-center rounded-lg bg-primary text-primary-foreground">
               <Sparkles className="h-5 w-5" />
             </div>
-            <span>EtsyAI Studio</span>
+            <span>Lumina Seller</span>
           </Link>
 
           <div className="space-y-2 mb-8">
             <h1 className="text-2xl font-bold tracking-tight">{mode === "signin" ? "Tekrar hoş geldiniz" : "Hesap oluşturun"}</h1>
             <p className="text-sm text-muted-foreground">
-              {mode === "signin" ? "EtsyAI Studio'ya giriş yapın." : "Ücretsiz hesabınızı oluşturun ve hemen başlayın."}
+              {mode === "signin" ? "Lumina Seller'a giriş yapın." : "Ücretsiz hesabınızı oluşturun ve hemen başlayın."}
             </p>
           </div>
 
