@@ -25,10 +25,12 @@ export default defineConfig({
         const outputDir = path.resolve(".output");
         const clientDir = path.resolve(".output/client");
         
-        // Ensure _worker.js exists in .output
+        // Ensure _worker.js and server.js exist in .output root
+        // assets/xxx.js files often have "../server.js" imports, so we need server.js in root
         if (fs.existsSync(path.join(serverDir, "server.js"))) {
           fs.copyFileSync(path.join(serverDir, "server.js"), path.join(outputDir, "_worker.js"));
-          console.log("Created .output/_worker.js");
+          fs.copyFileSync(path.join(serverDir, "server.js"), path.join(outputDir, "server.js"));
+          console.log("Created .output/_worker.js and .output/server.js");
         }
         
         // Merge assets: Copy from server/assets and client/assets to .output/assets
@@ -58,7 +60,7 @@ export default defineConfig({
             }
           }
         }
-        console.log("Assets merged and moved to .output root");
+        console.log("Assets merged and infrastructure stabilized in .output");
       }
     }
   ],
