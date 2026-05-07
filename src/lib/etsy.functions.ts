@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { createClient } from "@supabase/supabase-js";
-import crypto from "crypto";
+import crypto from 'node:crypto';
 
 let _supabase: any;
 function getSupabase() {
