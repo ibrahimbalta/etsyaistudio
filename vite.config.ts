@@ -25,13 +25,17 @@ export default defineConfig({
         const outputDir = path.resolve(".output");
         const clientDir = path.resolve(".output/client");
         
-        // Create a _worker.js wrapper to handle static assets and SSR
+        // Create a _worker.js wrapper to handle static assets, environment variables, and SSR
         if (fs.existsSync(path.join(serverDir, "server.js"))) {
           const workerContent = `
 import handler from './server.js';
 
 export default {
   async fetch(request, env, ctx) {
+    // Globalize environment variables for libraries that expect process.env
+    globalThis.process = globalThis.process || { env: {} };
+    Object.assign(globalThis.process.env, env);
+
     const url = new URL(request.url);
     
     // Try to serve static assets first
@@ -51,7 +55,7 @@ export default {
 `;
           fs.writeFileSync(path.join(outputDir, "_worker.js"), workerContent);
           fs.copyFileSync(path.join(serverDir, "server.js"), path.join(outputDir, "server.js"));
-          console.log("Created _worker.js wrapper and server.js");
+          console.log("Created _worker.js wrapper with env globalization");
         }
         
         // Merge assets: Copy from server/assets and client/assets to .output/assets
