@@ -3,15 +3,21 @@ import { z } from "zod";
 import { createClient } from "@supabase/supabase-js";
 
 // Initialize Supabase admin/server client for caching
-const supabase = createClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY!
-);
+let _supabase: any;
+function getSupabase() {
+  if (!_supabase) {
+    _supabase = createClient(
+      process.env.SUPABASE_URL || import.meta.env.VITE_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY!
+    );
+  }
+  return _supabase;
+}
 
 const FIRECRAWL = "https://api.firecrawl.dev/v2/search";
 
 async function callAI(body: { model: string; messages: any[]; response_format?: any }) {
-  const key = process.env.GEMINI_API_KEY;
+  const key = process.env.GEMINI_API_KEY || import.meta.env.VITE_GEMINI_API_KEY;
   if (!key) throw new Error("GEMINI_API_KEY missing. Lütfen .env dosyasına ekleyin.");
   
   // Standard Gemini models: gemini-1.5-flash, gemini-1.5-pro
@@ -69,7 +75,7 @@ export const searchEtsyTrends = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     // 1. Check Cache (Last 24 hours)
     const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
-    const { data: cached } = await supabase
+    const { data: cached } = await getSupabase()
       .from("trend_searches")
       .select("*")
       .eq("niche", data.niche.trim())
@@ -88,7 +94,7 @@ export const searchEtsyTrends = createServerFn({ method: "POST" })
       };
     }
 
-    const fcKey = process.env.FIRECRAWL_API_KEY;
+    const fcKey = process.env.FIRECRAWL_API_KEY || import.meta.env.VITE_FIRECRAWL_API_KEY;
     if (!fcKey) throw new Error("FIRECRAWL_API_KEY missing");
 
     const query = `best selling ${data.niche} site:etsy.com`;

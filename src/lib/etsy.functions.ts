@@ -3,14 +3,20 @@ import { z } from "zod";
 import { createClient } from "@supabase/supabase-js";
 import crypto from "crypto";
 
-const supabase = createClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY!
-);
+let _supabase: any;
+function getSupabase() {
+  if (!_supabase) {
+    _supabase = createClient(
+      process.env.SUPABASE_URL || import.meta.env.VITE_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY!
+    );
+  }
+  return _supabase;
+}
 
-const CLIENT_ID = process.env.VITE_ETSY_CLIENT_ID;
-const CLIENT_SECRET = process.env.ETSY_CLIENT_SECRET;
-const REDIRECT_URI = process.env.VITE_ETSY_REDIRECT_URI;
+const CLIENT_ID = process.env.VITE_ETSY_CLIENT_ID || import.meta.env.VITE_ETSY_CLIENT_ID;
+const CLIENT_SECRET = process.env.ETSY_CLIENT_SECRET || process.env.VITE_ETSY_CLIENT_SECRET;
+const REDIRECT_URI = process.env.VITE_ETSY_REDIRECT_URI || import.meta.env.VITE_ETSY_REDIRECT_URI;
 
 // Helper to generate PKCE
 function generatePKCE() {
@@ -78,7 +84,7 @@ export const handleEtsyCallback = createServerFn({ method: "POST" })
     // Note: Actual shop ID requires a separate call to /users/me or similar
     
     // Save to DB
-    const { error } = await supabase.from("etsy_shops").upsert({
+    const { error } = await getSupabase().from("etsy_shops").upsert({
       user_id: data.userId,
       access_token: tokens.access_token,
       refresh_token: tokens.refresh_token,
@@ -95,7 +101,7 @@ export const fetchEtsyListings = createServerFn({ method: "POST" })
   .inputValidator((d: { userId: string }) => z.object({ userId: z.string() }).parse(d))
   .handler(async ({ data }) => {
     // Check if shop is connected
-    const { data: shop } = await supabase
+    const { data: shop } = await getSupabase()
       .from("etsy_shops")
       .select("*")
       .eq("user_id", data.userId)
@@ -145,7 +151,7 @@ export const fetchEtsyOrders = createServerFn({ method: "POST" })
   .inputValidator((d: { userId: string }) => z.object({ userId: z.string() }).parse(d))
   .handler(async ({ data }) => {
     // Check if shop is connected
-    const { data: shop } = await supabase
+    const { data: shop } = await getSupabase()
       .from("etsy_shops")
       .select("*")
       .eq("user_id", data.userId)
