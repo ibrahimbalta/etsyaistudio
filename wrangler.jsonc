@@ -5,9 +5,5 @@
   "compatibility_flags": [
     "nodejs_compat"
   ],
-  "pages_build_output_dir": ".output",
-  "main": ".output/_worker.js",
-  "assets": {
-    "directory": ".output"
-  }
+  "pages_build_output_dir": ".output"
 }
