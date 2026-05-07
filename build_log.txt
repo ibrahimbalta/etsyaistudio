@@ -1,0 +1,33 @@
+﻿
+> build
+> vite build
+
+node.exe : [31mfailed to load config from C:\Users\A\Desktop\designflow\vite.config.ts[39m
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([31mfailed to ....config.ts[39m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[31merror during build:
+file:///C:/Users/A/Desktop/designflow/node_modules/.vite-temp/vite.config.ts.timestamp-1778153889595-347fc9540a8d08.mjs
+:5
+import { TanStackStartVite } from "file:///C:/Users/A/Desktop/designflow/node_modules/@tanstack/react-start/dist/esm/pl
+ugin/vite.js";
+         ^^^^^^^^^^^^^^^^^
+SyntaxError: The requested module 'file:///C:/Users/A/Desktop/designflow/node_modules/@tanstack/react-start/dist/esm/pl
+ugin/vite.js' does not provide an export named 'TanStackStartVite'
+    at #asyncInstantiate (node:internal/modules/esm/module_job:302:21)
+    at async ModuleJob.run (node:internal/modules/esm/module_job:405:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:660:26)
+    at async loadConfigFromBundledFile (file:///C:/Users/A/Desktop/designflow/node_modules/vite/dist/node/chunks/config
+.js:35936:12)
+    at async bundleAndLoadConfigFile (file:///C:/Users/A/Desktop/designflow/node_modules/vite/dist/node/chunks/config.j
+s:35824:17)
+    at async loadConfigFromFile (file:///C:/Users/A/Desktop/designflow/node_modules/vite/dist/node/chunks/config.js:357
+91:42)
+    at async resolveConfig (file:///C:/Users/A/Desktop/designflow/node_modules/vite/dist/node/chunks/config.js:35440:22
+)
+    at async createBuilder (file:///C:/Users/A/Desktop/designflow/node_modules/vite/dist/node/chunks/config.js:33895:19
+)
+    at async CAC.<anonymous> (file:///C:/Users/A/Desktop/designflow/node_modules/vite/dist/node/cli.js:629:10)[39m
