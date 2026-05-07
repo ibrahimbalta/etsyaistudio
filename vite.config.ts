@@ -7,7 +7,8 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   plugins: [
     tanstackStart({
-      deployment: "vercel",
+      server: { entry: "src/server.ts" },
+      deployment: "cloudflare-pages",
     }),
     react(),
     tailwindcss(),
