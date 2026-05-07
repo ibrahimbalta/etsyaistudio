@@ -1,6 +1,5 @@
 {
-  "framework": "vite",
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist/client",
-  "cleanUrls": true
+  "framework": null,
+  "installCommand": "npm install",
+  "buildCommand": "npm run build"
 }
