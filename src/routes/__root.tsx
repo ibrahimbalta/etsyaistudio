@@ -1,4 +1,4 @@
-// Rebuild trigger: Frankfurt project migration
+// Rebuild trigger: Frankfurt project migration + Project rename
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
